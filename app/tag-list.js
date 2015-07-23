@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router';
 import _ from 'lodash';
 
-export default class TagList extends React.Component {
-  render () {
+export default React.createClass({
+  render: function () {
     var tags = _.map(this.props.tags, tag => {
       var id = tag.replace(/ /g, '-');
-      return <li key={id}>
-        <a href="#">{tag}</a>
+      var tagUpdate = this.props.update.bind(null, id);
+      return <li key={id} className={this.props.selected === id ? "current": "" }>
+        <a href="#" onClick={tagUpdate}>{tag}</a>
       </li>;
     });
-    return <div>
-        <h2>Tags</h2>
+    return (
+      <div className="tag-list">
         <ul>{tags}</ul>
-      </div>;
+      </div>
+    );
   }
-}
+});

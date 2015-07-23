@@ -5,18 +5,25 @@ import { getUniqueTags } from './helpers';
 
 import TagList from './tag-list';
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = { tags: [] };
-  }
-  componentDidMount () {
-    console.log("YO");
+export default React.createClass({
+  getInitialState: function () {
+    return {
+      tags: [],
+      selectedTag: 'accountants'
+    };
+  },
+  componentDidMount: function () {
     getLedger().then(data => {
       this.setState({ 'tags': getUniqueTags(data.data) });
     });
+  },
+  updateTag: function (tagId, e) {
+    this.setState({selectedTag: tagId});
+  },
+  render: function () {
+    return <TagList
+      tags={this.state.tags}
+      selected={this.state.selectedTag}
+      update={this.updateTag} />;
   }
-  render () {
-    return <TagList tags={this.state.tags} />;
-  }
-}
+});

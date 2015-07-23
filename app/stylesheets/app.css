@@ -1,0 +1,20 @@
+body {
+  margin: 2em;
+}
+.tag-list ul {
+  margin: 0;
+  padding: 1em;
+  list-style: none;
+  background-color: #EEE;
+}
+.tag-list li {
+  display: inline-block;
+  margin: 0 1em 0 0;
+}
+.tag-list .current {
+  text-decoration: underline;
+}
+
+.tag-list a {
+  text-decoration: none;
+}
