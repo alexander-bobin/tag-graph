@@ -1,17 +1,40 @@
 import _ from 'lodash';
 
-var getUniqueTags = function (data) {
+var _getTagId = function (tag) {
+  return tag.replace(/ /g, '-');
+};
+var _tagsToArray = function (tags) {
+  var tagsArray = tags ? tags.split(",") : [];
+  return _.map(tagsArray, function (tag) {
+    return _.trim(tag);
+  });
+};
+
+var getTagList = function (data) {
   return _.chain(data)
     .map(function (entry) {
-      return entry.tags ? entry.tags.split(",") : []
+      return _tagsToArray(entry.tags);
     })
     .flatten()
-    .map(function (tag) {
-      return _.trim(tag);
-    })
     .uniq()
     .sort()
+    .indexBy(_getTagId)
     .value();
 };
 
-export { getUniqueTags };
+var getTaggedData = function (data) {
+  var cloned = _.cloneDeep(data);
+  return _.map(cloned, function (entry) {
+    entry.tags = _tagsToArray(entry.tags);
+    return entry;
+  });
+};
+
+var getDataByTag = function (data, tag) {
+  return _.filter(data, function (entry) {
+    if (!tag) return entry;
+    return entry.tags.indexOf(tag) !== -1;
+  });
+};
+
+export { getTagList, getTaggedData, getDataByTag };
