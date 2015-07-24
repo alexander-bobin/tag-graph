@@ -1,10 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 import { getLedger } from './api';
-import { getTagList, getTaggedData, getDataByTag } from './helpers';
+import { getTagList, getCoercedData, getFilteredData } from './helpers';
 
 import TagList from './tag-list';
 import DataTable from './data-table';
+import DateRange from './date-range';
 
 export default React.createClass({
   getInitialState: function () {
@@ -12,25 +14,39 @@ export default React.createClass({
       tags: {},
       data: [],
       visibleData: [],
-      selectedTag: null
+      selectedTag: null,
+      dateFrom: moment().subtract(1, 'years').toDate(),
+      dateTo: moment().toDate()
     };
   },
   componentDidMount: function () {
     getLedger().then(data => {
-      var taggedData = getTaggedData(data.data);
+      var coercedData = getCoercedData(data.data);
       this.setState({
         'tags': getTagList(data.data),
-        'data': taggedData,
-        'visibleData': taggedData
+        'data': coercedData,
+        'visibleData': getFilteredData(
+          coercedData,
+          this.state.selectedTag,
+          this.state.dateFrom,
+          this.state.dateTo
+        )
       });
     });
   },
-  updateTag: function (tagId, e) {
+  updateTag: function (tagId) {
     if (this.state.selectedTag === tagId) { tagId = null };
     this.setState({
       selectedTag: tagId,
-      visibleData: getDataByTag(this.state.data, tagId)
+      visibleData: getFilteredData(this.state.data, tagId, this.state.dateFrom, this.state.dateTo)
     });
+  },
+  updateDates: function (from, to) {
+    this.setState({
+      dateFrom: from,
+      dateTo: to,
+      visibleData: getFilteredData(this.state.data, this.state.selectedTag, from, to)
+    })
   },
   render: function () {
     return (
@@ -39,6 +55,10 @@ export default React.createClass({
           tags={this.state.tags}
           selected={this.state.selectedTag}
           update={this.updateTag} />
+        <DateRange
+          from={this.state.dateFrom}
+          to={this.state.dateTo}
+          update={this.updateDates} />
         <DataTable
           data={this.state.visibleData} />
       </div>

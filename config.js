@@ -20,6 +20,8 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.7.0",
     "core-js": "npm:core-js@0.9.18",
     "lodash": "npm:lodash@3.10.0",
+    "moment": "npm:moment@2.10.3",
+    "normalize.css": "npm:normalize.css@3.0.3",
     "react": "npm:react@0.14.0-beta1",
     "react-dom": "npm:react-dom@0.14.0-beta1",
     "react-router": "npm:react-router@1.0.0-beta3",
@@ -88,6 +90,9 @@ System.config({
       "source-map": "npm:source-map@0.1.31"
     },
     "npm:lodash@3.10.0": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
+    "npm:moment@2.10.3": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:path-browserify@0.0.0": {

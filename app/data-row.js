@@ -1,12 +1,14 @@
 import React from 'react';
+import moment from 'moment';
 
 export default React.createClass({
   render: function () {
     return (
       <tr>
-        <td>{this.props.data.description}</td>
-        <td>{this.props.data.credit}</td>
-        <td>{this.props.data.debit}</td>
+        <td width="10%">{moment(this.props.data.date).format("DD/MM/YY")}</td>
+        <td width="50%">{this.props.data.description}</td>
+        <td width="20%">{this.props.data.credit}</td>
+        <td width="20%">{this.props.data.debit}</td>
       </tr>
     );
   }

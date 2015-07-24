@@ -19,6 +19,7 @@ export default React.createClass({
       <table className="table">
         <thead>
           <tr>
+            <th>Date</th>
             <th>Description</th>
             <th>Credit</th>
             <th>Debit</th>

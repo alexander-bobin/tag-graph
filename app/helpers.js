@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 var _getTagId = function (tag) {
   return tag.replace(/ /g, '-');
@@ -22,19 +23,25 @@ var getTagList = function (data) {
     .value();
 };
 
-var getTaggedData = function (data) {
+var getCoercedData = function (data) {
+  // clone because we are altering the original objects
   var cloned = _.cloneDeep(data);
   return _.map(cloned, function (entry) {
     entry.tags = _tagsToArray(entry.tags);
+    entry.date = moment(entry.date, "DD/MM/YYYY");
     return entry;
   });
 };
 
-var getDataByTag = function (data, tag) {
+var getFilteredData = function (data, tag, from, to) {
+  console.log(tag, from, to);
   return _.filter(data, function (entry) {
-    if (!tag) return entry;
-    return entry.tags.indexOf(tag) !== -1;
+    return (
+      (!tag || entry.tags.indexOf(tag) !== -1) &&
+      entry.date >= from && 
+      entry.date <= to
+    );
   });
 };
 
-export { getTagList, getTaggedData, getDataByTag };
+export { getTagList, getCoercedData, getFilteredData };

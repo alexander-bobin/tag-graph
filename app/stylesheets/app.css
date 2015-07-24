@@ -1,11 +1,15 @@
 body {
   margin: 2em;
 }
+.filter {
+  padding: 1em;
+  background-color: #EEE;
+  margin: 0 0 1em;
+}
 .tag-list ul {
   margin: 0;
-  padding: 1em;
+  padding: 0;
   list-style: none;
-  background-color: #EEE;
 }
 .tag-list li {
   display: inline-block;
@@ -19,6 +23,14 @@ body {
   text-decoration: none;
 }
 
+.date-range label,
+.date-range input {
+  margin: 0 1em 0 0;
+}
+
 .table {
   width: 100%;
+}
+.table th {
+  text-align: left;
 }

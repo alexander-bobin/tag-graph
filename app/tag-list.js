@@ -10,7 +10,7 @@ export default React.createClass({
       </li>;
     });
     return (
-      <div className="tag-list">
+      <div className="tag-list filter">
         <ul>{tags}</ul>
       </div>
     );
