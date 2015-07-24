@@ -34,3 +34,10 @@ body {
 .table th {
   text-align: left;
 }
+.table td {
+  padding: 0.3em 0;
+}
+.table .total td {
+  border-top: 1px solid black;
+  font-weight: bold;
+}

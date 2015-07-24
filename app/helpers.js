@@ -13,9 +13,7 @@ var _tagsToArray = function (tags) {
 
 var getTagList = function (data) {
   return _.chain(data)
-    .map(function (entry) {
-      return _tagsToArray(entry.tags);
-    })
+    .pluck("tags")
     .flatten()
     .uniq()
     .sort()
@@ -24,9 +22,7 @@ var getTagList = function (data) {
 };
 
 var getCoercedData = function (data) {
-  // clone because we are altering the original objects
-  var cloned = _.cloneDeep(data);
-  return _.map(cloned, function (entry) {
+  return _.map(data, function (entry) {
     entry.tags = _tagsToArray(entry.tags);
     entry.date = moment(entry.date, "DD/MM/YYYY");
     return entry;
@@ -34,7 +30,6 @@ var getCoercedData = function (data) {
 };
 
 var getFilteredData = function (data, tag, from, to) {
-  console.log(tag, from, to);
   return _.filter(data, function (entry) {
     return (
       (!tag || entry.tags.indexOf(tag) !== -1) &&

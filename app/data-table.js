@@ -12,7 +12,11 @@ export default React.createClass({
     };
   },
   render: function () {
+    var creditTotal = 0,
+        debitTotal = 0;
     var rows = _.map(this.props.data, function (entry, i) {
+        if (entry.credit) { creditTotal += entry.credit; }
+        if (entry.debit) { debitTotal += entry.debit; }
         return <DataRow key={i} data={entry} />
       });
     return (
@@ -26,6 +30,12 @@ export default React.createClass({
           </tr>
         </thead>
         <tbody>{rows}</tbody>
+        <tfoot className="total">
+          <td></td>
+          <td></td>
+          <td>{creditTotal}</td>
+          <td>{debitTotal}</td>
+        </tfoot>
       </table>
     );
   }
