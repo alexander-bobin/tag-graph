@@ -31,10 +31,12 @@ export default React.createClass({
         </thead>
         <tbody>{rows}</tbody>
         <tfoot className="total">
-          <td></td>
-          <td></td>
-          <td>{creditTotal}</td>
-          <td>{debitTotal}</td>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>{creditTotal}</td>
+            <td>{debitTotal}</td>
+          </tr>
         </tfoot>
       </table>
     );
