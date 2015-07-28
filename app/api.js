@@ -1,5 +1,5 @@
 var getLedger = function () {
-  return fetch("app/data/main-account.json")
+  return fetch("app/data/source.json")
     .then(function (response) {
       return response.json();
     });
