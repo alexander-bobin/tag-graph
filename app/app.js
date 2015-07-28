@@ -6,7 +6,7 @@ import { getTagList, getCoercedData, getFilteredData } from './helpers';
 
 import TagList from './tag-list';
 import DataTable from './data-table';
-import DateRange from './date-range';
+import DateFilter from './date-filter';
 
 export default React.createClass({
   getInitialState: function () {
@@ -55,7 +55,7 @@ export default React.createClass({
           tags={this.state.tags}
           selected={this.state.selectedTag}
           update={this.updateTag} />
-        <DateRange
+        <DateFilter
           from={this.state.dateFrom}
           to={this.state.dateTo}
           update={this.updateDates} />

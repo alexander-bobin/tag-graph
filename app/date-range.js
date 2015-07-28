@@ -4,7 +4,8 @@ import moment from 'moment';
 export default React.createClass({
   propTypes: {
     from: React.PropTypes.instanceOf(Date).isRequired,
-    to: React.PropTypes.instanceOf(Date).isRequired
+    to: React.PropTypes.instanceOf(Date).isRequired,
+    update: React.PropTypes.func
   },
   update: function (e) {
     var fromText = this.refs.from.value,
@@ -17,7 +18,7 @@ export default React.createClass({
   },
   render: function () {
     return (
-      <div className="date-range filter">
+      <form>
         <label labelFor="date-from">from</label>
         <input 
           ref="from"
@@ -34,7 +35,7 @@ export default React.createClass({
           id="date-to"
           onChange={this.update}
           defaultValue={moment(this.props.to).format('YYYY-MM-DD')} />
-      </div>
+      </form>
     );
   }
 });
