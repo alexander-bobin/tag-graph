@@ -16,7 +16,20 @@ export default React.createClass({
       visibleData: [],
       selectedTag: null,
       dateFrom: moment().subtract(1, 'years').toDate(),
-      dateTo: moment().toDate()
+      dateTo: moment().toDate(),
+      dateRangePresets: [{
+        name: "13/14 personal",
+        from: new Date(2013, 3, 6),
+        to: new Date(2014, 3, 5)
+      },{
+        name: "14/15 personal",
+        from: new Date(2014, 3, 6),
+        to: new Date(2015, 3, 5)
+      },{
+        name: "15/16 personal",
+        from: new Date(2015, 3, 6),
+        to: new Date(2016, 3, 5)
+      }]
     };
   },
   componentDidMount: function () {
@@ -58,6 +71,7 @@ export default React.createClass({
         <DateFilter
           from={this.state.dateFrom}
           to={this.state.dateTo}
+          presets={this.state.dateRangePresets}
           update={this.updateDates} />
         <DataTable
           data={this.state.visibleData} />

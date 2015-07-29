@@ -23,8 +23,23 @@ body {
   text-decoration: none;
 }
 
+.date-range form {
+  display: inline-block;
+}
 .date-range label,
 .date-range input {
+  margin: 0 1em 0 0;
+}
+.date-range-presets {
+  display: inline-block;
+}
+.date-range-presets ul {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.date-range-presets li {
+  display: inline-block;
   margin: 0 1em 0 0;
 }
 
