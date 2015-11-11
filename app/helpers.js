@@ -23,6 +23,9 @@ var getTagList = function (data) {
 
 var getCoercedData = function (data) {
   return _.map(data, function (entry) {
+    if (entry.debit) entry.debit = entry.debit * 1;
+    if (entry.credit) entry.credit = entry.credit * 1;
+    if (entry.balance) entry.balance = entry.balance * 1;
     entry.tags = _tagsToArray(entry.tags);
     entry.date = moment(entry.date, "DD/MM/YYYY");
     return entry;
