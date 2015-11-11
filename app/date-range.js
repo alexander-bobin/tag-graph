@@ -26,7 +26,7 @@ export default React.createClass({
           name="date-from"
           id="date-from"
           onChange={this.update}
-          defaultValue={moment(this.props.from).format('YYYY-MM-DD')} />
+          value={moment(this.props.from).format('YYYY-MM-DD')} />
         <label labelFor="date-to">to</label>
         <input
           ref="to"
@@ -34,7 +34,7 @@ export default React.createClass({
           name="date-to"
           id="date-to"
           onChange={this.update}
-          defaultValue={moment(this.props.to).format('YYYY-MM-DD')} />
+          value={moment(this.props.to).format('YYYY-MM-DD')} />
       </form>
     );
   }
