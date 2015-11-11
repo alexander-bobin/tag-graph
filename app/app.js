@@ -18,6 +18,10 @@ export default React.createClass({
       dateFrom: moment().subtract(1, 'years').toDate(),
       dateTo: moment().toDate(),
       dateRangePresets: [{
+        name: "12/13 personal",
+        from: new Date(2012, 3, 6),
+        to: new Date(2013, 3, 5)
+      },{
         name: "13/14 personal",
         from: new Date(2013, 3, 6),
         to: new Date(2014, 3, 5)
