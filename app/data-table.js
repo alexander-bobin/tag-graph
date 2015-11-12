@@ -11,12 +11,24 @@ export default React.createClass({
       ]
     };
   },
+  getInitialState: function () {
+    return {
+      creditTotal: 0,
+      debitTotal: 0
+    };
+  },
+  componentWillReceiveProps: function (nextProps) {
+    var state = this.getInitialState();
+    _.each(nextProps.data, function (entry, i) {
+      if (entry.credit) { state.creditTotal += entry.credit; }
+      if (entry.debit) { state.debitTotal += entry.debit; }
+    });
+    state.creditTotal = state.creditTotal.toFixed(2);
+    state.debitTotal = state.debitTotal.toFixed(2);
+    this.setState(state);
+  },
   render: function () {
-    var creditTotal = 0,
-        debitTotal = 0;
     var rows = _.map(this.props.data, function (entry, i) {
-        if (entry.credit) { creditTotal += entry.credit; }
-        if (entry.debit) { debitTotal += entry.debit; }
         return <DataRow key={i} data={entry} />
       });
     return (
@@ -25,8 +37,8 @@ export default React.createClass({
           <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Credit</th>
-            <th>Debit</th>
+            <th className="number">Credit</th>
+            <th className="number">Debit</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
@@ -34,8 +46,8 @@ export default React.createClass({
           <tr>
             <td></td>
             <td></td>
-            <td>{creditTotal}</td>
-            <td>{debitTotal}</td>
+            <td className="number">{this.state.creditTotal}</td>
+            <td className="number">{this.state.debitTotal}</td>
           </tr>
         </tfoot>
       </table>

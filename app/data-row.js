@@ -7,8 +7,8 @@ export default React.createClass({
       <tr>
         <td width="10%">{moment(this.props.data.date).format("DD/MM/YY")}</td>
         <td width="50%">{this.props.data.reference}</td>
-        <td width="20%">{this.props.data.credit}</td>
-        <td width="20%">{this.props.data.debit}</td>
+        <td width="20%" className="number">{this.props.data.credit}</td>
+        <td width="20%" className="number">{this.props.data.debit}</td>
       </tr>
     );
   }
