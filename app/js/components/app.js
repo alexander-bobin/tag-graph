@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 
-import { getLedger } from './api';
-import { getTagList, getCoercedData, getFilteredData } from './helpers';
+import { getLedger } from '../misc/api';
+import { getTagList, getCoercedData, getFilteredData } from '../misc/helpers';
 
 import TagList from './tag-list';
 import DataTable from './data-table';

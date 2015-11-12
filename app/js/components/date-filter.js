@@ -1,6 +1,6 @@
 import React from 'react';
-import DateRange from 'app/date-range';
-import DateRangePresets from 'app/date-range-presets';
+import DateRange from './date-range';
+import DateRangePresets from './date-range-presets';
 
 export default React.createClass({
   propTypes: {
