@@ -45,7 +45,7 @@ const _filterByDateFrom = (date) => {
   _selectedDates.dateFrom = date;
 }
 const _filterByDateTo = (date) => {
-  _selectedDates.dateTo = to;
+  _selectedDates.dateTo = date;
 }
 
 const AppStore = Object.assign(EventEmitter.prototype, {

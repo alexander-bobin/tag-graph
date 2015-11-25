@@ -1,5 +1,3 @@
-// TODO: Handel date range click
-
 import React from 'react';
 import moment from 'moment';
 import AppStore from '../stores/app-store';

@@ -42,6 +42,12 @@ body {
   display: inline-block;
   margin: 0 1em 0 0;
 }
+.date-range-presets li a {
+  text-decoration: none;
+}
+.date-range-presets .current a {
+  text-decoration: underline;
+}
 
 .table {
   width: 100%;
