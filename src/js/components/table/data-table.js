@@ -22,7 +22,7 @@ const DataTable = (props) => {
     return <DataRow key={i} data={entry} />
   });
   return (
-    <table className="table">
+    <table className="table table-striped">
       <thead>
         <tr>
           <th>Date</th>

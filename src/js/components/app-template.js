@@ -5,11 +5,13 @@ import DateFilter from './filters/date-filter';
 
 export default () => {
   return (
-    <div>
-      <h1>View your ledger</h1>
-      <TagList />
-      <DateFilter />
-      <DataTable />
+    <div className="container">
+      <div className="row">
+        <h1>Company ledger</h1>
+        <TagList />
+        <DateFilter />
+        <DataTable />
+      </div>
     </div>
   );
 }
