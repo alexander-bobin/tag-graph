@@ -6,6 +6,8 @@ var getData = function () {
       download: true,
       header: true,
       complete: function (data) {
+        // Remove last because of new line in end of CSV
+        data.data.splice(-1,1);
         resolve(data);
       },
       error: function (data) {
