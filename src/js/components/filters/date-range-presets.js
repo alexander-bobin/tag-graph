@@ -1,9 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
-import AppStore from '../stores/app-store';
-import AppActions from '../actions/app-actions';
-import StoreWatchMixin from '../mixins/store-watch-mixin';
+import AppStore from '../../stores/app-store';
+import AppActions from '../../actions/app-actions';
+import StoreWatchMixin from '../../mixins/store-watch-mixin';
 
 const getState = () => {
   var dates = AppStore.getFilterDates();

@@ -1,8 +1,8 @@
 import React from 'react';
 import DateRange from './date-range';
 import DateRangePresets from './date-range-presets';
-import AppStore from '../stores/app-store';
-import StoreWatchMixin from '../mixins/store-watch-mixin';
+import AppStore from '../../stores/app-store';
+import StoreWatchMixin from '../../mixins/store-watch-mixin';
 
 const getState = () => {
   return {

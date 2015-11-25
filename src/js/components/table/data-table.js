@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import DataRow from './data-row';
-import AppStore from '../stores/app-store';
-import StoreWatchMixin from '../mixins/store-watch-mixin';
+import AppStore from '../../stores/app-store';
+import StoreWatchMixin from '../../mixins/store-watch-mixin';
 
 const getState = () => {
   return {
