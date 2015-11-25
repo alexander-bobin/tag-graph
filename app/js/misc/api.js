@@ -1,6 +1,6 @@
 import Papa from 'papaparse';
 
-var getLedger = function () {
+var getData = function () {
   var prom = new Promise(function(resolve, reject) {
     Papa.parse("data/source.csv", {
       download: true,
@@ -14,10 +14,6 @@ var getLedger = function () {
     })
   });
   return prom;
-  // return fetch("app/data/source.json")
-  //   .then(function (response) {
-  //     return response.json();
-  //   });
 };
 
-export { getLedger };
+export { getData };

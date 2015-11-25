@@ -2,7 +2,7 @@ import _ from 'lodash';
 import moment from 'moment';
 
 var _getTagId = function (tag) {
-  return tag.replace(/ /g, '-');
+  return tag ? tag.replace(/ /g, '-') : "";
 };
 var _tagsToArray = function (tags) {
   var tagsArray = tags ? tags.split(",") : [];
@@ -34,11 +34,10 @@ var getCoercedData = function (data) {
 
 var getFilteredData = function (data, tag, from, to) {
   return _.filter(data, function (entry) {
-    return (
-      (!tag || entry.tags.indexOf(tag) !== -1) &&
-      entry.date >= from && 
-      entry.date <= to
-    );
+    let isTagMatch = !tag || entry.tags.indexOf(tag) !== -1,
+        isFromMatch = !from || entry.date.isAfter(from) || entry.date.isSame(from),
+        isToMatch = !to || entry.date.isBefore(to) || entry.date.isSame(to);
+    return isTagMatch && isFromMatch && isToMatch;
   });
 };
 

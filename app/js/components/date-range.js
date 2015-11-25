@@ -1,41 +1,47 @@
+// TODO: Handel date range click
+
 import React from 'react';
 import moment from 'moment';
+import AppStore from '../stores/app-store';
+import AppActions from '../actions/app-actions';
+import StoreWatchMixin from '../mixins/store-watch-mixin';
 
-export default React.createClass({
-  propTypes: {
-    from: React.PropTypes.instanceOf(Date).isRequired,
-    to: React.PropTypes.instanceOf(Date).isRequired,
-    update: React.PropTypes.func
-  },
-  update: function (e) {
-    var fromText = this.refs.from.value,
-        toText = this.refs.to.value,
-        from = moment(fromText, 'YYYY-MM-DD').toDate(),
-        to = moment(toText, 'YYYY-MM-DD').toDate();
-    if (fromText && toText && from.getTime() < to.getTime()) {
-      this.props.update.call(null, from, to);
-    }
-  },
-  render: function () {
-    return (
-      <form>
-        <label labelFor="date-from">from</label>
-        <input 
-          ref="from"
-          type="date"
-          name="date-from"
-          id="date-from"
-          onChange={this.update}
-          value={moment(this.props.from).format('YYYY-MM-DD')} />
-        <label labelFor="date-to">to</label>
-        <input
-          ref="to"
-          type="date"
-          name="date-to"
-          id="date-to"
-          onChange={this.update}
-          value={moment(this.props.to).format('YYYY-MM-DD')} />
-      </form>
-    );
+const getState = () => {
+  var dates = AppStore.getFilterDates();
+  return {
+    from: dates.dateFrom,
+    to: dates.dateTo
   }
-});
+}
+
+const onChangeFrom = (e) => {
+  var date = e.target.value ? moment(e.target.value, 'YYYY-MM-DD') : null;
+  AppActions.filterDateFrom(date);
+}
+const onChangeTo = (e) => {
+  var date = e.target.value ? moment(e.target.value, 'YYYY-MM-DD') : null;
+  AppActions.filterDateTo(date);
+}
+
+const DateRange = (props) => {
+  return (
+    <form>
+      <label labelFor="date-from">from</label>
+      <input 
+        type="date"
+        name="date-from"
+        id="date-from"
+        onChange={onChangeFrom}
+        value={props.from ? moment(props.from).format('YYYY-MM-DD') : ''} />
+      <label labelFor="date-to">to</label>
+      <input
+        type="date"
+        name="date-to"
+        id="date-to"
+        onChange={onChangeTo}
+        value={props.to ? moment(props.to).format('YYYY-MM-DD') : ''} />
+    </form>
+  )
+}
+
+export default StoreWatchMixin(DateRange, getState);
