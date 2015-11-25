@@ -2,7 +2,7 @@ import Papa from 'papaparse';
 
 var getLedger = function () {
   var prom = new Promise(function(resolve, reject) {
-    Papa.parse("app/data/source.csv", {
+    Papa.parse("data/source.csv", {
       download: true,
       header: true,
       complete: function (data) {
